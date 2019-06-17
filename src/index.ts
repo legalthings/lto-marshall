@@ -1,6 +1,6 @@
 import {getTransactionSchema} from './schemas'
-import {serializeOrder, serializerFromSchema, serializeTx, TFromLongConverter} from './serialize'
-import {parseOrder, parserFromSchema, parseTx, TToLongConverter} from './parse'
+import {serializerFromSchema, serializeTx, TFromLongConverter} from './serialize'
+import {parserFromSchema, parseTx, TToLongConverter} from './parse'
 import * as json from './jsonMethods'
 import * as serializePrimitives from './serializePrimitives'
 import * as parsePrimitives from './parsePrimitives'
@@ -10,10 +10,8 @@ import {TSchema} from './schemaTypes'
 const binary = {
   serializerFromSchema,
   serializeTx,
-  serializeOrder,
   parserFromSchema,
   parseTx,
-  parseOrder,
 }
 
 export {

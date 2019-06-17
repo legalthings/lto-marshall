@@ -1,9 +1,8 @@
 import { binary } from '../src'
-import {exampleBytesStr, exampleTxs, orderV0, orderV2} from './exampleTxs'
+import {exampleTxs} from './exampleTxs'
 import Long = require('long')
 import BigNumber from 'bignumber.js'
 import {parserFromSchema} from '../src/parse'
-import {orderSchemaV0} from '../src/schemas'
 
 describe('Tx serialize/parse', ()=> {
   Object.entries(exampleTxs).forEach(([type, tx]) => {
@@ -17,18 +16,6 @@ describe('Tx serialize/parse', ()=> {
       delete (tx as any).id
       expect(parsed).toMatchObject(tx)
     })
-  })
-
-  it('Should correctly serialize old order', ()=>{
-    const bytes = binary.serializeOrder(orderV0)
-    const parsed = parserFromSchema<number>(orderSchemaV0, parseInt)(bytes).value
-    expect(orderV0).toMatchObject(parsed)
-  })
-
-  it('Should correctly serialize new order', ()=>{
-    const bytes = binary.serializeOrder(orderV2)
-    const parsed = binary.parseOrder<number>(bytes, parseInt)
-    expect(orderV2).toMatchObject(parsed)
   })
 
   it('Should correctly serialize LONGjs', ()=>{
@@ -56,13 +43,5 @@ describe('Tx serialize/parse', ()=> {
     expect(parsed.fee).toBeInstanceOf(BigNumber)
     expect(parsed.data[3].value).toBeInstanceOf(BigNumber)
     expect(parsed.timestamp).toBeInstanceOf(BigNumber)
-  })
-
-  it('Should get exact bytes for transactions', () => {
-    Object.entries(exampleBytesStr).forEach(([type, bytesStr]) => {
-      const tx = (exampleTxs as any)[type]
-      const bytes = binary.serializeTx(tx).toString()
-      expect(bytesStr).toEqual(bytes.toString())
-    })
   })
 })

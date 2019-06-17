@@ -1,6 +1,6 @@
 import {json} from "../src/";
 import Long = require("long");
-import {exampleOrders, exampleTxs} from "./exampleTxs";
+import {exampleTxs} from "./exampleTxs";
 
 describe('Basic serialization', ()=> {
   const txJson = `{"type":12,"version":1,"senderPublicKey":"7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh",
@@ -19,16 +19,6 @@ describe('Basic serialization', ()=> {
     expect(parsed.data[3].value).toBeInstanceOf(Long)
   })
 
-});
-
-describe('Orders json to and from', () => {
-  Object.entries(exampleOrders).forEach(([version, ord]) => {
-    it(`Order version: ${version}. toJSON, fromJSON`, () => {
-      const str = json.stringifyOrder(ord);
-      const parsed = json.parseOrder(str)
-      expect(parsed).toMatchObject(ord)
-    })
-  });
 });
 
 describe('All tx json to and from', ()=>{

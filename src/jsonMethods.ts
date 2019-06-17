@@ -1,7 +1,7 @@
 import * as create from 'parse-json-bignumber/dist/parse-json-bignumber'
 
 const {parse, stringify} = create()
-import {getTransactionSchema, orderSchemaV0, orderSchemaV2} from './schemas'
+import {getTransactionSchema} from './schemas'
 import {TSchema} from './schemaTypes'
 import {LONG} from './serializePrimitives'
 import {convertLongFields, convertTxLongFields} from './index'
@@ -205,27 +205,3 @@ export function stringifyTx<LONG>(tx: any, fromLongConverter?: TFromLongConverte
   const txWithStrings = convertLongFields(tx, schema, undefined, fromLongConverter)
   return stringifyWithSchema(txWithStrings, schema)
 }
-
-/**
- * Safe parse json string to order. Converts unsafe numbers to strings. Converts all LONG fields with converter if provided
- * @param str
- * @param toLongConverter
- */
-export function parseOrder<LONG = string>(str: string, toLongConverter?: TToLongConverter<LONG>) {
-  const ord = parse(str)
-  const schema = ord.version === 2 ? orderSchemaV2 : orderSchemaV0
-  return toLongConverter ? convertLongFields(ord, schema, toLongConverter) : ord
-}
-
-/**
- * Converts order to JSON string
- * If order contains custom LONG instances and this instances doesn't have toString method, you can provide converter as second param
- * @param ord
- * @param fromLongConverter
- */
-export function stringifyOrder<LONG>(ord: any, fromLongConverter?: TFromLongConverter<LONG>): string {
-  const schema = ord.version === 2 ? orderSchemaV2 : orderSchemaV0
-  const ordWithStrings = convertLongFields(ord, schema, undefined, fromLongConverter)
-  return stringifyWithSchema(ordWithStrings, schema)
-}
-

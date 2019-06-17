@@ -1,6 +1,6 @@
 import {BYTE, LEN, SHORT, STRING, TSerializer} from './serializePrimitives'
 import {concat} from './libs/utils'
-import {orderSchemaV0, orderSchemaV2, getTransactionSchema} from './schemas'
+import {getTransactionSchema} from './schemas'
 import {TSchema} from './schemaTypes'
 
 export type TFromLongConverter<LONG> = (v: LONG) => string
@@ -100,10 +100,4 @@ export function serializeTx<LONG = string | number>(tx: any, fromLongConverter?:
   const schema = getTransactionSchema(type, version)
 
   return serializerFromSchema(schema, fromLongConverter)(tx)
-}
-
-export function serializeOrder<LONG = string | number>(ord: any, fromLongConverter?: TFromLongConverter<LONG>): Uint8Array {
-  const {version} = ord
-  const schema = version == 2 ? orderSchemaV2 : orderSchemaV0
-  return serializerFromSchema(schema, fromLongConverter)(ord)
 }
