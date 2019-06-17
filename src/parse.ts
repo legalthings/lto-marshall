@@ -1,6 +1,6 @@
 import {byteToStringWithLength, P_BYTE, P_LONG, P_SHORT, TParser} from './parsePrimitives'
 import {range} from './libs/utils'
-import {getTransactionSchema, orderSchemaV2} from './schemas'
+import {getTransactionSchema} from './schemas'
 import {TSchema} from './schemaTypes'
 
 export type TToLongConverter<LONG> = (val: string) => LONG
@@ -146,12 +146,4 @@ export function parseTx<LONG = string>(bytes: Uint8Array, toLongConverter?: TToL
   const schema = getTransactionSchema(type, version)
 
   return parserFromSchema(schema, toLongConverter)(bytes).value
-}
-
-
-/**
- * This function cannot parse OrderV1, which doesn't have version field
- */
-export function parseOrder<LONG = string>(bytes: Uint8Array, toLongConverter?: TToLongConverter<LONG>) {
-  return parserFromSchema(orderSchemaV2, toLongConverter)(bytes).value
 }
