@@ -6,6 +6,7 @@
   "repository": "https://github.com/legalthings/lto-marshall",
   "scripts": {
     "test": "jest",
+    "build": "tsc",
     "prepublishOnly": "tsc"
   },
   "author": "LTO Network",
