@@ -85,11 +85,6 @@ export namespace txFields {
 
   export const amount = longField('amount')
 
-  export const assetDescription = stringField('description')
-
-  export const assetId = base58field32('assetId')
-  export const assetName = stringField('name')
-
   export const attachment: TObjectField = ['attachment', {
     toBytes: LEN(SHORT)(BASE58_STRING),
     fromBytes: P_BASE58_VAR(P_SHORT),
@@ -101,11 +96,7 @@ export namespace txFields {
 
   export const fee = longField('fee')
 
-  export const leaseAssetId = base58Option32('leaseAssetId')
-
   export const leaseId = base58field32('leaseId')
-
-  export const optionalAssetId = base58Option32('assetId')
 
   export const quantity = longField('quantity')
 
@@ -207,23 +198,6 @@ export namespace txFields {
       }],
     ],
   }]
-
-  export const payment: TObject = {
-    type: 'object',
-    withLength: shortConverter,
-    schema: [
-      amount,
-      ['assetId', {
-        toBytes: OPTION(LEN(SHORT)(BASE58_STRING)),
-        fromBytes: P_OPTION(P_BASE58_VAR(P_SHORT)),
-      }],
-    ],
-  }
-
-  export const payments: TObjectField = ['payment', {
-    type: 'array',
-    items: payment,
-  }]
 }
 
 export const cancelLeaseSchemaV2: TSchema = {
@@ -287,7 +261,6 @@ export const leaseSchemaV2: TSchema = {
   schema: [
     txFields.type,
     txFields.version,
-    txFields.leaseAssetId,
     txFields.senderPublicKey,
     txFields.recipient,
     txFields.amount,
@@ -302,7 +275,6 @@ export const massTransferSchemaV1: TSchema = {
     txFields.type,
     txFields.version,
     txFields.senderPublicKey,
-    txFields.optionalAssetId,
     txFields.transfers,
     txFields.timestamp,
     txFields.fee,
@@ -329,8 +301,6 @@ export const transferSchemaV2: TSchema = {
     txFields.type,
     txFields.version,
     txFields.senderPublicKey,
-    txFields.optionalAssetId,
-    ['feeAssetId', txFields.optionalAssetId[1]],
     txFields.timestamp,
     txFields.amount,
     txFields.fee,

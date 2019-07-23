@@ -42,7 +42,6 @@ export const massTransferTx = {
   type: 11,
   version: 1,
   fee: 200000,
-  assetId: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
   senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
   timestamp: 1542539421576,
   proofs:
