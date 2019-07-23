@@ -102,6 +102,8 @@ export namespace txFields {
 
   export const reissuable = booleanField('reissuable')
 
+  export const reserved = byteField('reserved')
+
   export const recipient: TObjectField = ['recipient', {
     toBytes: BASE58_STRING, //ToDo: add alias
     fromBytes: byteToAddressOrAlias,
@@ -261,6 +263,7 @@ export const leaseSchemaV2: TSchema = {
   schema: [
     txFields.type,
     txFields.version,
+    txFields.reserved,
     txFields.senderPublicKey,
     txFields.recipient,
     txFields.amount,
