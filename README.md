@@ -15,15 +15,17 @@ Marshall can serialize and parse LTO blockchain data structures
 import { binary, json } from 'parse-serialize'
 
 const tx = {
-  type: 10,
+  type: 4,
   version: 2,
   fee: 100000,
   senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
-  timestamp: 1542539421565,
-  id: '1bVuFdMbDAk6dhcQFfJFxpDjmm8DdFnnKesQ3wpxj7P',
+  timestamp: 1542539421461,
   proofs:
-    ['5cW1Ej6wFRK1XpMm3daCWjiSXaKGYfL7bmspZjzATXrNYjRVxZJQVJsDU7ZVcxNXcKJ39fhjxv3rSu4ovPT3Fau8'],
-  alias: 'MyTestAlias'
+  ['22J76sGhLRo3S5pkqGjCi9fijpEeGGRmnv7canxeon2n2MNx1HhvKaBz2gYTdpJQohmUusRKR3yoCAHptRnJ1Fwe'],
+  id: 'EG3WvPWWEU5DdJ7xfB3Y5TRJNzMpt6urgKoP7docipvW',
+  recipient: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+  amount: 10000,
+  attachment: '',
 };
 
 // Binary converter
