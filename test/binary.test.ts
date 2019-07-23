@@ -2,7 +2,6 @@ import { binary } from '../src'
 import {exampleTxs} from './exampleTxs'
 import Long = require('long')
 import BigNumber from 'bignumber.js'
-import {parserFromSchema} from '../src/parse'
 
 describe('Tx serialize/parse', ()=> {
   Object.entries(exampleTxs).forEach(([type, tx]) => {
