@@ -11,7 +11,6 @@ describe('Basic serialization', ()=> {
   it('Should not break numbers', () => {
     const parsed = json.parseTx(txJson);
     expect(typeof parsed.data[3].value).toBe('string')
-    console.log()
   });
 
   it('Should convertLongFields numbers using factory', () => {
