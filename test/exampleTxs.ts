@@ -87,6 +87,36 @@ export const anchorTx = {
   ],
 }
 
+export const associationTx = {
+  type: 16,
+  version: 1,
+  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
+  fee: 1000000,
+  timestamp: 1542539421680,
+  proofs:
+      ['KL8ggXHZiBxe32zdYwBV6k4fJ6AvEfM3Hn4HmfcPpPDqtakS2NonckAVJ53N1s2gzX7kxADPR9afmP3f3qYteLY'],
+  id: '9NrYcPr6zN7rr9nypvuQHSTToNniyYXKiDFK3UDeQ6F8',
+  party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+  associationType: 2,
+  hash: null,
+  action: 'issue'
+}
+
+export const associationHashTx = {
+  type: 16,
+  version: 1,
+  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
+  fee: 1000000,
+  timestamp: 1542539421680,
+  proofs:
+      ['2ZfDUgARyvm9LECFiMtAh2V4RZph1NQqL9WKqG3mgixXXk7jp6Nyr7qcore1HGXBKVHpYzwHi9QGWNP738D7GVvT'],
+  id: '9NrYcPr6zN7rr9nypvuQHSTToNniyYXKiDFK3UDeQ6F8',
+  party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+  associationType: 2,
+  hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX',
+  action: 'issue'
+}
+
 export const setScriptTx = {
   type: 13,
   version: 1,
@@ -108,4 +138,6 @@ export const exampleTxs = {
   12: dataTx,
   13: setScriptTx,
   15: anchorTx,
+  16: associationTx,
+  '16 (with hash)': associationHashTx
 }

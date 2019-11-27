@@ -33,6 +33,7 @@ export enum TRANSACTION_TYPE {
   DATA = 12,
   SET_SCRIPT = 13,
   ANCHOR = 15,
+  ASSOCIATION = 16,
 }
 
 const shortConverter = {
@@ -47,6 +48,8 @@ const intConverter = {
 export namespace txFields {
   //Field constructors
   export const longField = (name: string): TObjectField => ([name, { toBytes: LONG, fromBytes: P_LONG }])
+
+  export const intField = (name: string): TObjectField => ([name, { toBytes: INT, fromBytes: P_INT }])
 
   export const byteField = (name: string): TObjectField => ([name, { toBytes: BYTE, fromBytes: P_BYTE }])
 
@@ -171,6 +174,17 @@ export namespace txFields {
     },
   }]
 
+  export const party: TObjectField = ['party', {
+    toBytes: BASE58_STRING,
+    fromBytes: byteToAddressOrAlias,
+  }]
+
+  export const hash = base58Option32 ('hash')
+
+  export const associationType = intField('associationType')
+
+  export const action = stringField('action')
+
   const functionArgument = anyOf([
     [0, { toBytes: LONG, fromBytes: P_LONG }, 'integer'],
     [1, { toBytes: LEN(INT)(BASE64_STRING), fromBytes: P_BASE64(P_INT) }, 'binary'],
@@ -232,6 +246,21 @@ export const anchorSchemaV1: TSchema = {
     txFields.version,
     txFields.senderPublicKey,
     txFields.anchors,
+    txFields.timestamp,
+    txFields.fee,
+  ],
+}
+
+export const associationSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.senderPublicKey,
+    txFields.party,
+    txFields.associationType,
+    txFields.hash,
+    txFields.action,
     txFields.timestamp,
     txFields.fee,
   ],
@@ -332,6 +361,9 @@ export const schemasByTypeMap = {
   },
   [TRANSACTION_TYPE.ANCHOR]: {
     1: anchorSchemaV1,
+  },
+  [TRANSACTION_TYPE.ASSOCIATION]: {
+    1: associationSchemaV1,
   },
   [TRANSACTION_TYPE.SET_SCRIPT]: {
     1: setScriptSchemaV1,
