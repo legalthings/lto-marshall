@@ -1,4 +1,19 @@
-import { LONG, SHORT, BYTE, BYTES, STRING, INT, BOOL, OPTION, COUNT, LEN, BASE58_STRING, BASE64_STRING, one, zero } from '../src/serializePrimitives';
+import {
+  LONG,
+  SHORT,
+  BYTE,
+  BYTES,
+  STRING,
+  INT,
+  BOOL,
+  OPTION,
+  COUNT,
+  LEN,
+  BASE58_STRING,
+  BASE64_STRING,
+  one,
+  zero,
+} from '../src/serializePrimitives';
 
 const string = 'TestString'
 const bytes = [84, 101, 115, 116, 83, 116, 114, 105, 110, 103]
