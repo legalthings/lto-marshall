@@ -13,7 +13,6 @@ import {
   BASE64_STRING,
   one,
   zero,
-  BASE58_STRING_64_BYTES
 } from '../src/serializePrimitives';
 
 const string = 'TestString'
