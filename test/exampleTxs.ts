@@ -99,7 +99,7 @@ export const associationTx = {
   party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
   associationType: 2,
   hash: null,
-  action: 'issue'
+  chainId: 87,
 }
 
 export const associationHashTx = {
@@ -114,7 +114,7 @@ export const associationHashTx = {
   party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
   associationType: 2,
   hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX',
-  action: 'issue'
+  chainId: 87,
 }
 
 export const setScriptTx = {

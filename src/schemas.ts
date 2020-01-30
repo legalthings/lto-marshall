@@ -33,7 +33,8 @@ export enum TRANSACTION_TYPE {
   DATA = 12,
   SET_SCRIPT = 13,
   ANCHOR = 15,
-  ASSOCIATION = 16,
+  INVOKE_ASSOCIATION = 16,
+  REVOKE_ASSOCIATION = 17,
 }
 
 const shortConverter = {
@@ -179,7 +180,10 @@ export namespace txFields {
     fromBytes: byteToAddressOrAlias,
   }]
 
-  export const hash = base58Option32 ('hash')
+  export const hash: TObjectField = ['hash', {
+    toBytes: OPTION(LEN(SHORT)(BASE58_STRING)),
+    fromBytes: P_OPTION(P_BASE58_VAR(P_SHORT)),
+  }]
 
   export const associationType = intField('associationType')
 
@@ -256,11 +260,11 @@ export const associationSchemaV1: TSchema = {
   schema: [
     txFields.type,
     txFields.version,
+    txFields.chainId,
     txFields.senderPublicKey,
     txFields.party,
     txFields.associationType,
     txFields.hash,
-    txFields.action,
     txFields.timestamp,
     txFields.fee,
   ],
@@ -362,7 +366,10 @@ export const schemasByTypeMap = {
   [TRANSACTION_TYPE.ANCHOR]: {
     1: anchorSchemaV1,
   },
-  [TRANSACTION_TYPE.ASSOCIATION]: {
+  [TRANSACTION_TYPE.INVOKE_ASSOCIATION]: {
+    1: associationSchemaV1,
+  },
+  [TRANSACTION_TYPE.REVOKE_ASSOCIATION]: {
     1: associationSchemaV1,
   },
   [TRANSACTION_TYPE.SET_SCRIPT]: {
