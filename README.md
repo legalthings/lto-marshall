@@ -1,4 +1,4 @@
-# @lto-network/lto-marshall [![npm version](https://badge.fury.io/js/%40lto-network%2Flto-marshall.svg)](https://badge.fury.io/js/%40lto-network%2Flto-marshall) [![Build Status](https://travis-ci.org/ltonetwork/lto-marshall.svg?branch=master)](https://travis-ci.org/ltonetwork/lto-marshall)
+# @lto-network/lto-marshall [![npm version](https://badge.fury.io/js/%40lto-network%2Flto-marshall.svg)](https://badge.fury.io/js/%40lto-network%2Flto-marshall) [![Build Status](https://travis-ci.com/ltonetwork/lto-marshall.svg?branch=master)](https://travis-ci.com/ltonetwork/lto-marshall)
 
 Marshall can serialize and parse LTO blockchain data structures
 
