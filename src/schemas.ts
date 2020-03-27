@@ -22,7 +22,6 @@ import {
   anyOf
 } from './schemaTypes'
 
-
 //Todo: import this enums from ts-types package
 export enum TRANSACTION_TYPE {
   GENESIS = 1,
@@ -35,6 +34,8 @@ export enum TRANSACTION_TYPE {
   ANCHOR = 15,
   INVOKE_ASSOCIATION = 16,
   REVOKE_ASSOCIATION = 17,
+  SPONSOR = 18,
+  CANCEL_SPONSOR = 19,
 }
 
 const shortConverter = {
@@ -288,12 +289,12 @@ export const proofsSchemaV1: TSchema = {
   ],
 }
 
-
 export const leaseSchemaV2: TSchema = {
   type: 'object',
   schema: [
     txFields.type,
     txFields.version,
+    txFields.byteConstant(0),
     txFields.senderPublicKey,
     txFields.recipient,
     txFields.amount,
@@ -342,6 +343,31 @@ export const transferSchemaV2: TSchema = {
   ],
 }
 
+export const sponsorSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.chainId,
+    txFields.senderPublicKey,
+    txFields.recipient,
+    txFields.timestamp,
+    txFields.fee,
+  ],
+}
+
+export const cancelSponsorSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.chainId,
+    txFields.senderPublicKey,
+    txFields.recipient,
+    txFields.timestamp,
+    txFields.fee,
+  ],
+}
 
 /**
  * Maps transaction types to schemas object. Schemas are written by keys. 0 - no version, n - version n
@@ -374,6 +400,12 @@ export const schemasByTypeMap = {
   },
   [TRANSACTION_TYPE.SET_SCRIPT]: {
     1: setScriptSchemaV1,
+  },
+  [TRANSACTION_TYPE.SPONSOR]: {
+    1: sponsorSchemaV1,
+  },
+  [TRANSACTION_TYPE.CANCEL_SPONSOR]: {
+    1: cancelSponsorSchemaV1,
   },
 }
 
