@@ -2,6 +2,12 @@
 
 Marshall can serialize and parse LTO blockchain data structures
 
+# Note
+
+> This package has been **deprecated.** It has since been merged with [@lto-network/lto-transactions](https://github.com/ltonetwork/lto-transactions), as a folder: `parseSerialize`. This repository will *no longer be maintained.*
+
+---
+
 ### Includes:
 - Serialization primitives
 - Parsing primitives
